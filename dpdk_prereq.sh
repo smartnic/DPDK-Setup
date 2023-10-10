@@ -9,8 +9,8 @@ apt install python3-pip
 apt-get install libnuma-dev
 # Install pkg-config
 apt-get install pkg-config
-# Reserve 1024 - 2 MB pages
-echo 1024 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
+# Reserve 2 - 1GB pages
+echo 2 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
 # Make the memory available for DPDK to use
 mkdir -p /mnt/huge
 mount -t hugetlbfs pagesize=1GB /mnt/huge

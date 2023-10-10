@@ -11,7 +11,7 @@
     - For Intel CPU: `intel_iommu=on`
     - For AMD CPU: `amd_iommu=on`
 - Update GRUB `$ sudo update-grub` and reboot the system.
-> The Hugepage configuration might have been reset after reboot. So, if the examples don't work, try running the `echo 1024 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages` command again to reserve 1024 hugepages.
+> The Hugepage configuration might have been reset after reboot. So, if the examples don't work, try running the `echo 2 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages` command again to reserve 2, 1GB hugepages.
 - To verify that IOMMU is enabled, run `$ sudo dmesg | grep -i -e DMAR -e IOMMU`. You should find a message similar to this (For Intel CPU)
 ```
 [   11.385867] pci 0000:ff:16.0: Adding to iommu group 87
@@ -36,7 +36,7 @@
 ## Using testpmd to transmit packets
 - Inside the build directory, run the following command to start testpmd
 ```
-sudo .app/dpdk-testpmd -l 0-3 -n 4 -- -i --portmask=0x1 --nb-cores=2
+sudo ./app/dpdk-testpmd -l 0-3 -n 4 -- -i --portmask=0x1 --nb-cores=2
 ```
 - To start the port `port start <port-no>`
 - To show the port status `show port info <port-no>`
